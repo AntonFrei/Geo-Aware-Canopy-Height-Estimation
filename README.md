@@ -32,7 +32,7 @@ _training_
 
 &nbsp;&nbsp;&nbsp;&nbsp;- generate_satclip_embeddings.py  
 
-```Generates a csv with each location (train, test and val) and it satclip embedding, used in the satclip encoder function, as a simple hashlookup is simpler than generating it freshly from each new location, would need to adapted if changed into "production" ```
+```Generates a csv with each location (train, test and val) and its satclip embedding, used in the satclip encoder function, as a simple hashlookup is simpler than generating it freshly from each new location, would need to adapted if changed into "production" ```
 
 _testing_
 

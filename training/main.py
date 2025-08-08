@@ -40,7 +40,7 @@ defaults = dict(
 
     # Data
     dataset='icml_2024_global_rh100',
-    batch_size=10, #Optimum per paper:32 - default 5 - memory/speed tradeoff, batchsize_15 => 1 Epoch ~ 600 Iterations
+    batch_size=10, #Optimum per paper:32, memory/speed tradeoff, batchsize_15 => 1 Epoch ~ 600 Iterations
 
     # Architecture
     arch='unet',  # Defaults to unet
@@ -48,8 +48,6 @@ defaults = dict(
     use_pretrained_model=False,
 
     # Optimization
-    ## In runner.py get_dataloaders():
-    #cut_off = 1000  # Reduce from 3000 to 1000
     optim='AdamW',  # Defaults to AdamW
     loss_name='shift_huber',  # Defaults to shift_l1
     n_iterations=24000, #6000 / 18000 for satclip

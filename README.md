@@ -1,6 +1,8 @@
 # Evaluating the Impact of Geocoordinate Integration on Canopy Height Estimation Accuracy
 [Adapted from https://github.com/AI4Forest/Global-Canopy-Height-Map ; https://arxiv.org/abs/2406.01076]
 
+https://github.com/AntonFrei/Geo-Aware-Canopy-Height-Estimation.git
+
 ## Modified:
 
 _training_

@@ -7,7 +7,7 @@ _training_
 
 &nbsp;&nbsp;&nbsp;&nbsp;- main.py 
 
-```Adapted hyperparameter; use of standardization; addition of: use_coord_encoding, coord_encoder, coord_injection_mode```
+```Adapted hyperparameters; use of standardization; addition of: use_coord_encoding, coord_encoder, coord_injection_mode```
 
 &nbsp;&nbsp;&nbsp;&nbsp;- runner.py 
 

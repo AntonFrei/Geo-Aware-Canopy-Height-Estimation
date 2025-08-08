@@ -97,7 +97,7 @@ class Runner:
 
         # Coord encoder
         self.use_coord_encoding = self.config.use_coord_encoding
-        self.coord_encoder = getattr(self.config, 'coord_encoder') # , 'raw'
+        self.coord_encoder = getattr(self.config, 'coord_encoder') 
         self.coord_injection_mode = getattr(self.config, 'coord_injection_mode')
         self.encoder_fn = ENCODER_MAP.get(getattr(self, "coord_encoder"))
 
@@ -331,7 +331,7 @@ class Runner:
             else:
                 raise NotImplementedError(f"Architecture {arch} not implemented")
             
-            # Apply wrapper BEFORE loading weights
+            # Apply wrapper before loading weights
             if self.use_coord_encoding and self.coord_injection_mode == "feature_maps":
                 model = CoordInjectionModelWrapper(
                     base_model=base_model,

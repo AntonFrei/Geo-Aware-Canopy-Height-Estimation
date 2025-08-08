@@ -52,16 +52,16 @@ defaults = dict(
     loss_name='shift_huber',  # Defaults to shift_l1
     n_iterations=24000, #6000 / 18000 for satclip
     log_freq=500,
-    initial_lr=5e-4, #Default 1e-3 / without geo 1e-4 for more input
-    weight_decay=1e-3, #default 1e-3 / 1e-1
+    initial_lr=5e-4, #Default 1e-3 
+    weight_decay=1e-3, #default 1e-3 
     use_standardization=True,
     use_augmentation=False,
     use_label_rescaling=False,
 
     #Coordinates
-    use_coord_encoding=False, #!!!!!!
+    use_coord_encoding=False, 
     coord_encoder="fourier",  # Options: raw, wrap, wrap_lon_only,fourier, satclip
-    coord_injection_mode="input",  # NEW: Options: "input", "feature_maps"
+    coord_injection_mode="input",  # Options: "input", "feature_maps"
 
 
     # Efficiency

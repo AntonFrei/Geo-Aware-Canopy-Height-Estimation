@@ -42,7 +42,7 @@ defaults = dict(
     #Coordinates
     use_coord_encoding=True,                       
     coord_encoder='satclip',           # Options: raw, wrap, wrap_lon_only,fourier, satclip
-    coord_injection_mode='feature_maps',      # Options: "input", "feature_maps"
+    coord_injection_mode='feature_maps',    # Options: "input", "feature_maps"
 
     # Efficiency
     fp16=False,

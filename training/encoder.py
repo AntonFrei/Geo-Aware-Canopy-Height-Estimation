@@ -80,39 +80,6 @@ def encode_satclip(lat, lon, embedding_csv="Updated-Global-Canopy-Height-Map-Coo
 encode_satclip.num_output_channels = 256
 
 
-
-'''
-def encode_grid(lat, lon, r_min=1, r_max=1000, S=4):
-    lat_rad = np.radians(lat)
-    lon_rad = np.radians(lon)
-    encoding = []
-
-    for s in range(S):
-        alpha_s = r_min * ((r_max / r_min) ** (s / max(S - 1, 1)))
-        encoding.extend([
-            np.cos(lon_rad / alpha_s), np.sin(lon_rad / alpha_s),
-            np.cos(lat_rad / alpha_s), np.sin(lat_rad / alpha_s),
-        ])
-    return np.array(encoding, dtype=np.float32)
-
-
-def encode_sh(lat, lon, L=3):
-    lat_rad, lon_rad = np.radians(lat), np.radians(lon)
-    result = []
-    for l in range(L + 1):
-        for m in range(-l, l + 1):
-            P_lm = lpmv(abs(m), l, np.sin(lat_rad))
-            norm = math.sqrt((2 * l + 1) / (4 * np.pi) * math.factorial(l - abs(m)) / math.factorial(l + abs(m)))
-            if m < 0:
-                result.append(norm * P_lm * np.sin(abs(m) * lon_rad))
-            elif m == 0:
-                result.append(norm * P_lm)
-            else:
-                result.append(norm * P_lm * np.cos(m * lon_rad))
-    return np.array(result, dtype=np.float32)
-encode_sh.num_output_channels = (3 + 1) ** 2 #(L + 1) ** 2 
-'''
-
 # --- Dispatcher ---
 ENCODER_MAP = {
     "raw": encode_raw,

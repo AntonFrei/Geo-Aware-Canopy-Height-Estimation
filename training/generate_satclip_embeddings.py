@@ -47,11 +47,11 @@ def install_requirements():
                     import sklearn
                 else:
                     __import__(package.replace("-", "_"))
-                print(f"✓ {package} already installed")
+                print(f"{package} already installed")
             except ImportError:
                 print(f"Installing {package}...")
                 subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--quiet"])
-                print(f"✓ {package} installed")
+                print(f"{package} installed")
         
         # Clone SatCLIP repository if not already present
         if not os.path.exists("./satclip"):
@@ -95,7 +95,7 @@ try:
         satclip_load = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(satclip_load)
         get_satclip = satclip_load.get_satclip
-        print("✓ Successfully imported get_satclip from SatCLIP repository")
+        print("Successfully imported get_satclip from SatCLIP repository")
     else:
         raise ImportError(f"load.py not found at {load_py_path}")
         
@@ -164,7 +164,7 @@ def download_with_verification(url, output_path, expected_size_mb=None, max_retr
             # Verify the downloaded file
             is_valid, message = verify_file_integrity(output_path, expected_size_mb)
             if is_valid:
-                print(f"✓ Download successful and verified: {output_path}")
+                print(f"Download successful and verified: {output_path}")
                 return True
             else:
                 print(f"Download verification failed: {message}")
@@ -287,11 +287,11 @@ def load_satclip_model():
         c = torch.randn(2, 2)  # Test coordinates (lat, lon pairs)
         with torch.no_grad():
             test_emb = model(c.double().to(device)).detach().cpu()
-            print(f"✓ SatCLIP test successful - embedding shape: {test_emb.shape}")
+            print(f"SatCLIP test successful - embedding shape: {test_emb.shape}")
             embedding_dim = test_emb.shape[1]
-            print(f"✓ Embedding dimension: {embedding_dim}")
+            print(f"Embedding dimension: {embedding_dim}")
         
-        print("✓ SatCLIP model loaded successfully")
+        print("SatCLIP model loaded successfully")
         return model, device, embedding_dim
         
     except Exception as e:
@@ -310,7 +310,7 @@ def get_all_coordinates_from_csvs():
     
     # Define paths
     base_path = "/home/ubuntu/work/satellite_data/icml_2024_global_rh100/"
-    csv_files = ['train.csv', 'val.csv','test.csv']  # Add 'test.csv' if it exists
+    csv_files = ['train.csv', 'val.csv','test.csv']  
     
     all_coordinates = []
     
@@ -356,7 +356,7 @@ def get_all_coordinates_from_csvs():
     coords_df = coords_df.drop_duplicates(subset=['lat_rounded', 'lon_rounded'])
     coords_df = coords_df.drop(['lat_rounded', 'lon_rounded'], axis=1)
     
-    print(f"✓ Found {len(coords_df)} unique coordinates")
+    print(f"Found {len(coords_df)} unique coordinates")
     return coords_df
 
 def generate_satclip_embeddings(coords_df, model, device, embedding_dim, batch_size=32):
@@ -416,8 +416,8 @@ def save_embeddings_to_csv(coords_df, embeddings, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     result_df.to_csv(output_path, index=False)
     
-    print(f"✓ Saved {len(result_df)} coordinate embeddings to {output_path}")
-    print(f"✓ Embedding dimension: {embedding_dim}")
+    print(f"Saved {len(result_df)} coordinate embeddings to {output_path}")
+    print(f"Embedding dimension: {embedding_dim}")
     
     return result_df
 
@@ -444,15 +444,15 @@ def main():
         result_df = save_embeddings_to_csv(coords_df, embeddings, output_path)
         
         print("\n" + "="*60)
-        print("✓ SUCCESS: Real SatCLIP embeddings generated!")
-        print(f"✓ Output file: {output_path}")
-        print(f"✓ Total coordinates: {len(result_df)}")
-        print(f"✓ Embedding dimension: {len([col for col in result_df.columns if col.startswith('emb_')])}")
-        print("✓ These are genuine SatCLIP coordinate embeddings!")
+        print("SUCCESS: Real SatCLIP embeddings generated!")
+        print(f"Output file: {output_path}")
+        print(f"Total coordinates: {len(result_df)}")
+        print(f"Embedding dimension: {len([col for col in result_df.columns if col.startswith('emb_')])}")
+        print("These are genuine SatCLIP coordinate embeddings!")
         print("="*60)
         
     except Exception as e:
-        print(f"\n❌ ERROR: {e}")
+        print(f"\n ERROR: {e}")
         print("Please check the error above and try again.")
         raise
 

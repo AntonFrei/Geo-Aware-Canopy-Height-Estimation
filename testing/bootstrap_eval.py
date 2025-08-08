@@ -5,8 +5,7 @@ from tqdm import tqdm
 def bootstrap_ci(all_preds, all_targets, loss_fns, metrics_to_bootstrap, n_boot=1000, device="cuda"):
     """
     Efficient bootstrap implementation that pre-computes all batch losses once.
-    Handles NaN values gracefully.
-    
+    Handles NaN values for batches with no >30.
     Args:
         all_preds: List of prediction tensors from each batch
         all_targets: List of target tensors from each batch  
@@ -75,7 +74,7 @@ def bootstrap_ci(all_preds, all_targets, loss_fns, metrics_to_bootstrap, n_boot=
         original_metrics[metric_name] = np.nanmean(batch_losses[metric_name])
         print(f"Original {metric_name}: {original_metrics[metric_name]:.4f}")
     
-    # BOOTSTRAP: Now just resample the pre-computed losses
+    # BOOTSTRAP: Resample the pre-computed losses
     print(f"Running bootstrap resampling for {len(valid_metrics)} valid metrics...")
     bootstrap_results = {metric: [] for metric in valid_metrics}
     
